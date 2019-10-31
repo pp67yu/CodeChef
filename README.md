@@ -1,2 +1,2 @@
 # CodeChef
-CodeChef Long Contest (Div 1)
+CodeChef Long Contest (Div 2)
