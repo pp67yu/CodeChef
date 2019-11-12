@@ -2,10 +2,18 @@
 # Partially correct (N, M, K < 101, 50 points)
 
 
+D = dict()
+
+
 # function to return the distance between two specific points:
 # -> returns distance
 def distance(A, B):
-    return ((A[0] - B[0])**2 + (A[1] - B[1])**2) ** 0.5
+    if tuple(A + B) in D:
+        return D[tuple(A + B)]
+
+    d = ((A[0] - B[0])**2 + (A[1] - B[1])**2) ** 0.5
+    D[tuple(A + B)] = D[tuple(B + A)] = d
+    return d
 
 
 # split a list into a list of x, y co-ordinates
@@ -22,12 +30,13 @@ def arr(A):
 
 
 def calculate(X, A, B, E):
-    res1 = res2 = []
+    res1 = []
     for a in A:
         for b in B:
             D = distance(X, a) + distance(a, b)
             res1.append(D)
 
+    res2 = []
     for i, b in enumerate(B):
         for e in E:
             L = distance(b, e)
